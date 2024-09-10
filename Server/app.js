@@ -27,7 +27,7 @@ const app=express();
 app.use(express.json());
 // app.use(cors());
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:`${process.env.FROTEND_URL}`,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials:true,
     optionsSuccessStatus: 200,
