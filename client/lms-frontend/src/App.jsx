@@ -20,6 +20,9 @@ import Profile from './Pages/User/Profile';
 import EditProfile from './Pages/User/EditProfile';
 import Checkout from './Pages/payments/Checkout';
 import CheckoutSuccess from './Pages/payments/Checkoutsuccess';
+import UpdatePassword from './Pages/UpdatePassword';
+import ForgotPassword from './Pages/ForgotPassword';
+import ResetPassword from './Pages/ResetPassword';
 
 
 
@@ -39,11 +42,14 @@ useEffect(()=>{
   <Route path='/contactus' element={<ContactUs/>} />
   <Route path='/courses/description' element={<CourseDescription/>} />
   <Route path='/login' element={<SigninPage/>} />
-
+  <Route path='/reset-password' element ={<ForgotPassword/>} />
+  <Route path='/reset-password/:token' element={<ResetPassword/>}/>
   <Route element={<RequireAuth reqroles={['ADMIN','USER']} />}>
      <Route path='/user/profile' element={<Profile/>} />
      <Route path='/user/editprofile' element={<EditProfile/>} />
      <Route path='/checkout' element={<Checkout/>} />
+     <Route path='/updatepassword' element={<UpdatePassword/>}/>
+     
   </Route>
 
   <Route element={<RequireAuth reqroles={['ADMIN']} />}>

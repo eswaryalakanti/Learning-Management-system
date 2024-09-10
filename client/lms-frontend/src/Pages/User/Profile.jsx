@@ -1,10 +1,6 @@
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-
-
-
 import HomeLayout from "../../Layouts/HomeLayout";
 import { cancelsubscription } from "../../redux/slice/razorpay_slice";
 import { getuser } from "../../redux/slice/authslice";
@@ -47,7 +43,7 @@ function Profile() {
 
                     <div className="flex items-center justify-between gap-2">
                         <Link 
-                            to="/changepassword"
+                            to="/updatepassword"
                             className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center"
                         >
                             <button>

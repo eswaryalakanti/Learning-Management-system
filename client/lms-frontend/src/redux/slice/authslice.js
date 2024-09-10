@@ -75,6 +75,76 @@ export const loginuser = createAsyncThunk("auth/login", async (data) => {
 });
 
 
+export const forgotPassword = createAsyncThunk(
+  'user/forgotPassword',
+  async (email) => {
+    try {
+     
+      const response = axiosInstance.post('/user/reset', { email });
+      toast.promise(response, {
+        loading: "Wait! creating your account",
+        success: (data) => {
+          return data?.data?.message;
+        },
+        error: "Failed to create your account",
+      });
+      return await response.data.message || 'Reset email sent!';
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  }
+);
+
+
+
+
+export const updatepasssword=createAsyncThunk('/auth/updatepassword',async(data)=>{
+  try{
+    const response=axiosInstance.post('/user/update-password',data);
+    toast.promise(response, {
+      loading: "Wait! creating your account",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Failed to create your account",
+    });
+   return await response;
+  }
+  catch(error){
+    console.log(error);
+    toast.error(error?.response?.data?.message);
+  }
+})
+
+
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ email, password, token }) => {
+    try {
+      console.log(token);
+      
+      const response = axiosInstance.post(`/user/reset/${token}`, {
+        email,
+        password,
+      });
+      toast.promise(response, {
+        loading: "Wait! creating your account",
+        success: (data) => {
+          return data?.data?.message;
+        },
+        error: "Failed to create your account",
+      });
+      return await response;
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  }
+);
+
+
 export const editprofile = createAsyncThunk("auth/editprofile", async (data) => {
   try {
     console.log('the dat is:',data);

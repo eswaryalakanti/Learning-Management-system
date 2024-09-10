@@ -95,7 +95,8 @@ setFormData({
             Sign Up
           </button>
         </form>
-        <p className='pt-2'>Dont have an account?  <Link to='/signup' className='cursor-pointer text-center text-blue-700'>Sign in</Link></p>
+        <p className='pt-2'>Dont have an account? <Link to='/reset-password'>Forgot Passowrd</Link> <Link to='/signup' className='cursor-pointer text-center text-blue-700'>Sign in</Link></p>
+        
       </div>
     </div>
   );

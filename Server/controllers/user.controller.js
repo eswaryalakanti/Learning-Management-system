@@ -184,40 +184,50 @@ const getprofile = async (req, res) => {
 
 //forgotpassword
 const forgotpassword = async (req, res, next) => {
+  console.log('f1');
+  
   const { email } = req.body;
+  console.log(email);
+  
 
   if (!email) {
     return next(new AppError("please provide email", 404));
   }
 
-  const dat = user.findOne({ email });
+  const dat1 =await user.findOne({ email });
 
-  if (!dat) {
+
+  if (!dat1) {
     return next(new AppError("user email not found", 404));
   }
 
-  const token = await dat.generatepasswordtoken();
-  await dat.save();
-  const resetPasswordUrl = `${process.env.FROTEND_URL}/reset-password/${resetToken}`;
+  const token = await dat1.generatepasswordtoken();
 
+  await dat1.save();
+  const resetPasswordUrl = `${process.env.FROTEND_URL}/reset-password/${token}`;
+ console.log('e2');
+ 
   // We here need to send an email to the user with the token
   const subject = "Reset Password";
   const message = `You can reset your password by clicking <a href=${resetPasswordUrl} target="_blank">Reset your password</a>\nIf the above link does not work for some reason then copy paste this link in new tab ${resetPasswordUrl}.\n If you have not requested this, kindly ignore.`;
 
   try {
     await sendEmail(email, subject, message);
-
+   console.log('e1');
+   
     // If email sent successfully send the success response
     res.status(200).json({
       success: true,
       message: `Reset password token has been sent to ${email} successfully`,
     });
   } catch (error) {
+    console.log(error);
+    
     // If some error happened we need to clear the forgotPassword* fields in our DB
-    user.forgotPasswordToken = undefined;
-    user.forgotPasswordExpiry = undefined;
+    dat1.forgotPasswordToken = undefined;
+    dat1.forgotPasswordExpiry = undefined;
 
-    await user.save();
+    await dat1.save();
 
     return next(
       new AppError(
@@ -230,24 +240,28 @@ const forgotpassword = async (req, res, next) => {
 
 //resetpassword
 const resetpassword = async (req, res, next) => {
+  try{
   const { token } = req.params;
   const { email, password } = req.body;
+console.log(token,password);
 
   const fortoken = await crypto
     .createHash("sha256")
     .update(token)
     .digest("hex");
+console.log('u1',fortoken);
 
-  const u = await user
-    .findOne({
+  const u = await user.findOne({
       forgotPasswordToken: fortoken,
-      forgotPasswordExpiry: { $gt: Date.now() },
+      
     })
     .select("+password");
+console.log('u2',u);
 
   if (!u) {
     return next(new AppError("Invalid token", 400));
   }
+console.log('u3');
 
   u.password = password;
   u.forgotPasswordExpiry = undefined;
@@ -259,10 +273,18 @@ const resetpassword = async (req, res, next) => {
     success: true,
     message: "Password reset successfully",
   });
+}catch(error){
+  console.log(error);
+  
+}
 };
 
 const updatepassword = async function (req, res, next) {
+  console.log('update');
+  
   const { oldpassword, newpassword } = req.body;
+  console.log(oldpassword);
+  
   if (!oldpassword || !newpassword) {
     return next(new AppError("Please provide old and new password", 400));
   }

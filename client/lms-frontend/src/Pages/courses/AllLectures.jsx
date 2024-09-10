@@ -3,7 +3,7 @@ import HomeLayout from '../../Layouts/HomeLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getalllectures, searchCourses } from '../../redux/slice/courseslice';
 import LectureCard from '../../components/LectureCard';
-import { useSpring } from 'framer-motion';
+
 
 const AllLectures = () => {
   const dispatch = useDispatch();
