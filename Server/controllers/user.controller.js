@@ -15,7 +15,7 @@ import crypto from "crypto";
 const cokkieoption = {
   secure: true,
   maxAge: 7 * 24 * 60 * 60 * 1000,
-  httpOnly: true,
+  // httpOnly: true,
   sameSite: "strict",
 };
 
@@ -74,7 +74,7 @@ console.log('121');
   const cookieOptions = {
     secure: false,
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-    httpOnly: true,
+    // httpOnly: true,
     sameSite: "None",
   };
   return res.status(200).json({
@@ -112,7 +112,7 @@ const login = async (req, res, next) => {
     const cookieOptions = {
       secure: false,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-      httpOnly: true,
+      // httpOnly: true,
       sameSite: "None",
     };
 

@@ -50,6 +50,7 @@ const getlecturesbyid = async function (req, res, next) {
       message: "Course retrieved successfully",
     });
   } catch (error) {
+    
     return next(new AppError(error.message, 400));
   }
 };
