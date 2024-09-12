@@ -30,6 +30,7 @@ app.use(cors({
     origin:"https://learning-management-system-ten-flame.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials:true,
+    exposedHeaders: ["set-cookie"],
     optionsSuccessStatus: 200,
 }));
 

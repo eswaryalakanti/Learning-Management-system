@@ -15,7 +15,7 @@ import crypto from "crypto";
 const cokkieoption = {
   secure: true,
   maxAge: 7 * 24 * 60 * 60 * 1000,
-  httpOnly: false,
+  httpOnly: true,
   sameSite: "strict",
 };
 
@@ -74,7 +74,7 @@ console.log('121');
   const cookieOptions = {
     secure: true,
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-    httpOnly: false,
+    httpOnly: true,
     sameSite: "None",
   };
   return res.status(200).json({
@@ -112,7 +112,7 @@ const login = async (req, res, next) => {
     const cookieOptions = {
      secure: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "None",
     };
 
@@ -140,7 +140,7 @@ const login = async (req, res, next) => {
 const logout = (req, res) => {
   // Set the cookie to expire immediately
   res.cookie("token", "", {
-    httpOnly: false,
+    httpOnly: true,
    secure: true, // Only set secure flag in production
     maxAge: 0, // Immediate expiration
     expires: new Date(0), // Set expiration date to the past
