@@ -116,14 +116,14 @@ const login = async (req, res, next) => {
       sameSite: "None",
     };
 
-    //  res.cookie("token", token, cookieOptions);
-    // console.log("Cookie set with token:", token);
-    // console.log(res.getHeaders());
-    // return res.cookie("token", token, cookieOptions).status(200).json({
-    //   success: true,
-    //   data: users,
-    //   message: "Logged In successfully",
-    // });
+     res.cookie("token", token, cookieOptions);
+    console.log("Cookie set with token:", token);
+    console.log(res.getHeaders());
+    return res.cookie("token", token, cookieOptions).status(200).json({
+      success: true,
+      data: users,
+      message: "Logged In successfully",
+    });
     return res.status(200).json({
       success: true,
       data: users,
