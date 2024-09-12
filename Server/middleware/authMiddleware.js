@@ -22,6 +22,8 @@ console.log(token,'hello');
     req.user = detail;
     console.log('the details:',detail);
   } catch (error) {
+    console.log(error);
+    
     return res.status(401).json({ message: "Invalid token", success: false });
   }
       // const {token}= req?.cookies
