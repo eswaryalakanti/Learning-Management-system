@@ -1,5 +1,5 @@
  import React, { Children, useEffect, useState } from 'react';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch, useSelector } from 'react-redux';
