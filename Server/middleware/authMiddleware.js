@@ -6,7 +6,7 @@ import JWT from "jsonwebtoken";
 
 const isloggedin=(req,res,next)=>{
 
-   
+   try{
   const token = req.cookies.token;
 
    // Correct way to access cookies
@@ -40,6 +40,10 @@ console.log(token,'hello');
 
       
       next();
+}catch(error){
+  console.log(error);
+  
+}
 }
 
 
