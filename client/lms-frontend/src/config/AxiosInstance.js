@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base_url = "http://localhost:5003/api/v1";
+const base_url = "https://learning-management-system-1-yu9w.onrender.com/api/v1";
 
 const axiosInstance = axios.create({
   headers: {

@@ -11,6 +11,7 @@ const isloggedin=(req,res,next)=>{
 
    // Correct way to access cookies
 
+console.log(token,'hello');
 
   if (!token) {
     return res.status(401).json({ message: "Please login to access this resource", success: false });
