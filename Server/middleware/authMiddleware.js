@@ -5,7 +5,8 @@ import AppError from "../utils/Apperror.js";
 import JWT from "jsonwebtoken";
 
 const isloggedin=(req,res,next)=>{
-
+    console.log('isloggedin');
+    
    try{
   const token = req.cookies.token;
 
@@ -14,7 +15,7 @@ const isloggedin=(req,res,next)=>{
 console.log(token,'hello');
 
   if (!token) {
-    return res.status(401).json({ message: "Please login to access this resource", success: false });
+    return res.status(401).json({ message: "Please login eswar to access this resource", success: false });
   }
 
   try {
