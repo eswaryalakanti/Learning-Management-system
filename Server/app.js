@@ -27,7 +27,7 @@ const app=express();
 app.use(express.json());
 // app.use(cors());
 app.use(cors({
-    origin:`${process.env.FROTEND_URL}`,
+    origin:"https://learning-management-system-ten-flame.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials:true,
     optionsSuccessStatus: 200,
