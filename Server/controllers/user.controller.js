@@ -13,7 +13,7 @@ import sendEmail from "../utils/sendemail.js";
 import crypto from "crypto";
 
 const cokkieoption = {
-  secure: true,
+  //secure: true,
   maxAge: 7 * 24 * 60 * 60 * 1000,
   // httpOnly: true,
   sameSite: "strict",
@@ -72,7 +72,7 @@ console.log('121');
   createuser.password = undefined;
 
   const cookieOptions = {
-    secure: false,
+    //secure: false,
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
     // httpOnly: true,
     sameSite: "None",
@@ -110,7 +110,7 @@ const login = async (req, res, next) => {
      console.log(users);
      
     const cookieOptions = {
-      secure: false,
+     // secure: false,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
       // httpOnly: true,
       sameSite: "None",
@@ -141,7 +141,7 @@ const logout = (req, res) => {
   // Set the cookie to expire immediately
   res.cookie("token", "", {
     httpOnly: true,
-    secure: false, // Only set secure flag in production
+   // secure: false, // Only set secure flag in production
     maxAge: 0, // Immediate expiration
     expires: new Date(0), // Set expiration date to the past
   });
