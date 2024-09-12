@@ -12,7 +12,7 @@ router.get('/search',searchCourses);
         .get(isloggedin,getlecturesbyid)
         .put(isloggedin,authorizeduser('ADMIN'),updateCourse)
         .delete(isloggedin,authorizeduser('ADMIN'),deleteCourse)
-        .post(isloggedin,authorizeduser('ADMIN'),createlecture);
+        .post(isloggedin,authorizeduser('ADMIN'),upload.single('lecture'),createlecture);
 router.route('/:cid/:title/delete')
        .post(isloggedin,authorizeduser('ADMIN'),deletelecture);
 

@@ -187,11 +187,20 @@ const searchCourses = async function (req, res, next) {
 const createlecture = async function (req, res, next) {
   try {
     const cid = req.params.cid;
+    console.log(cid,"cid");
+    console.log(req.body);
+    
     const { title, description } = req.body;
+  console.log(title,description);
+  console.log(req.file);
+  
+    
     if (!title || !description) {
       return next(new AppError("all fields required", 400));
     }
     const user = await Course.findById(cid);
+    console.log('c1',user);
+    
     if (!user) {
       return next(new AppError("course didnot found ", 400));
     }
@@ -200,6 +209,8 @@ const createlecture = async function (req, res, next) {
       description: description,
       lecture: {},
     };
+    console.log('c2');
+    
     if (req.file) {
       try {
         const upload = await cloudinary.v2.uploader.upload(req.file.path, {
@@ -207,16 +218,21 @@ const createlecture = async function (req, res, next) {
           width: 250,
           height: 250,
         });
-
+ console.log('c3');
+ 
         if (upload) {
           lecturedata.lecture.public_id = upload.public_id;
           lecturedata.lecture.secure_url = upload.secure_url; //upload.secure_url;
 
           fs.rm(`uploads/${req.file.filename}`);
         }
+        console.log('c4');
+        
       } catch (error) {
         next(new AppError(error.message || "issue in file uploading ", 500));
       }
+      console.log('c5');
+      
     }
     user.lectures.push(lecturedata);
     user.numberOfLectures = user.lectures.length;
@@ -227,6 +243,8 @@ const createlecture = async function (req, res, next) {
       data: user,
     });
   } catch (error) {
+    console.log(error);
+    
     return next(new AppError(error.message, 500));
   }
 };

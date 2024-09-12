@@ -51,7 +51,8 @@ const authorizeduser = (...roles) => {
     if (!roles.includes(givenrole)) {
       return next(new AppError('You do not have access to this resource', 403));
     }
-
+     console.log('ssss');
+     
     next();
   };
 };

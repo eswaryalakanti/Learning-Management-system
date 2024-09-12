@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axiosInstance from "../../config/AxiosInstance"
+import toast from "react-hot-toast";
 
 const initialstate={
     lectures:[]
 }
 
-export const getalllectures=createAsyncThunk('/course/lectures',async(cid)=>{
+export const getallthelecture=createAsyncThunk('/course/lectures',async(cid)=>{
   
     try {
         const response=axiosInstance.get(`courses/${cid}`);
@@ -26,13 +27,23 @@ export const getalllectures=createAsyncThunk('/course/lectures',async(cid)=>{
 })
 
 
-export const addlecture=createAsyncThunk('/course/lectures/create',async(cid,data)=>{
+export const addlecture=createAsyncThunk('/course/lectures/create',async({cid,data})=>{
   
     try {
+      console.log(cid);
+      
+      console.log(data);
+      
         const formData=new FormData()
         formData.append('title',data.title);
+        console.log(data.title);
+        
         formData.append('description',data.description);
+        console.log(data.description);
+        
         formData.append('lecture',data.lecture);
+        console.log(formData.get('title'));
+        
         const response=axiosInstance.post(`courses/${cid}`,formData);
         toast.promise(response, {
           loading: "creating a lecture",
@@ -53,7 +64,7 @@ export const addlecture=createAsyncThunk('/course/lectures/create',async(cid,dat
 export const deletelecture=createAsyncThunk('/course/lectures/create',async(cid,lid)=>{
   
     try {
-        const response=axiosInstance.post(`courses?courseId=${cid} && lectureId=${lid}`,formData);
+        const response=await axiosInstance.post(`courses?courseId=${cid} && lectureId=${lid}`,formData);
         toast.promise(response, {
           loading: "creating a lecture",
           success: (data) => {
@@ -79,7 +90,7 @@ const lectureslice=createSlice(
     extraReducers:
         (builder)=>{
            
-        builder.addCase(getalllectures.fulfilled,(state,action)=>{
+        builder.addCase(getallthelecture.fulfilled,(state,action)=>{
             state.lectures=action?.payload?.data?.data;
         })
     }

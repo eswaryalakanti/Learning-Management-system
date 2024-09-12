@@ -23,6 +23,8 @@ import CheckoutSuccess from './Pages/payments/Checkoutsuccess';
 import UpdatePassword from './Pages/UpdatePassword';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
+import DisplayLectures from './Pages/dashboard/DisplayLectures';
+import AddLecture from './Pages/dashboard/Addlecture';
 
 
 
@@ -49,11 +51,13 @@ useEffect(()=>{
      <Route path='/user/editprofile' element={<EditProfile/>} />
      <Route path='/checkout' element={<Checkout/>} />
      <Route path='/updatepassword' element={<UpdatePassword/>}/>
+     <Route path='/course/displaylectures' element={<DisplayLectures/>}/>
      
   </Route>
 
   <Route element={<RequireAuth reqroles={['ADMIN']} />}>
      <Route path='/course/create' element={<CreateCourse/>} />
+     <Route path='/course/addlecture' element={<AddLecture/>}/>
   </Route>
 
   <Route element={<RequireAuth reqroles={['USER']} />}>
