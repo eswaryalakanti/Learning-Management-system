@@ -6,6 +6,8 @@ import upload from '../middleware/multer.js';
 
 const router= express.Router();
 router.get('/search',searchCourses);
+router.route('/delete')
+       .post(isloggedin,authorizeduser('ADMIN'),deletelecture);
  router.route('/').get(getallcourses).post(isloggedin,authorizeduser('ADMIN'),upload.single('thumbnail'),createCourse);
 
  router.route('/:cid')
@@ -13,8 +15,7 @@ router.get('/search',searchCourses);
         .put(isloggedin,authorizeduser('ADMIN'),updateCourse)
         .delete(isloggedin,authorizeduser('ADMIN'),deleteCourse)
         .post(isloggedin,authorizeduser('ADMIN'),upload.single('lecture'),createlecture);
-router.route('/delete')
-       .post(isloggedin,authorizeduser('ADMIN'),deletelecture);
+
 
 
 export default router;
