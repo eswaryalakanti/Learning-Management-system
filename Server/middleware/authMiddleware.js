@@ -8,7 +8,8 @@ const isloggedin=(req,res,next)=>{
     console.log('isloggedin');
     
    try{
-  const token = req.cookies.token;
+  // const token = req.cookies.token;
+  const token = req.headers['authorization'];
 
    // Correct way to access cookies
 
