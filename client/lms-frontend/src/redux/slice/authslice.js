@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const initialState = {
   isloggedin: localStorage.getItem("isloggedin") || false,
+  token:'',
   role: localStorage.getItem("role") || "",//changed
   auth_data: JSON.parse( JSON.stringify(localStorage.getItem("auth_data")) )|| {},
 };
@@ -37,6 +38,7 @@ export const createuser = createAsyncThunk("auth/signup", async (data) => {
           secure: secure,
           expires: expiresDate,
         });
+        localStorage.setItem('token',token);
     }
     return await response;
   } catch (error) {
@@ -66,6 +68,7 @@ export const loginuser = createAsyncThunk("auth/login", async (data) => {
           secure: secure,
           expires: expiresDate,
         });
+        localStorage.setItem('token',token);
     }
     return await response;
   } catch (error) {
@@ -168,6 +171,7 @@ export const editprofile = createAsyncThunk("auth/editprofile", async (data) => 
           secure: secure,
           expires: expiresDate,
         });
+        localStorage.setItem('token',token);
     }
     return await response;
   } catch (error) {

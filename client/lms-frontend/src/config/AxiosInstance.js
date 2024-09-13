@@ -10,6 +10,24 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    // Retrieve token from localStorage
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      // Attach JWT token to Authorization header
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosInstance.defaults.baseURL = base_url;
 axiosInstance.defaults.timeout = 6500;
 
