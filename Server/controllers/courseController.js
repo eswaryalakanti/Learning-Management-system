@@ -278,6 +278,7 @@ const deletelecture = async function (req, res, next) {
   // }
 
   const { courseId, lectureId } = req.query;
+console.log('hhinjj');
 
   console.log(courseId,lectureId);
 
