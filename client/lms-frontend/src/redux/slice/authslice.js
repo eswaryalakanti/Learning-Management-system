@@ -69,6 +69,8 @@ export const loginuser = createAsyncThunk("auth/login", async (data) => {
           expires: expiresDate,
         });
         localStorage.setItem('token',token);
+        console.log();
+        
     }
     return await response;
   } catch (error) {
