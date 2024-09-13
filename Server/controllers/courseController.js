@@ -214,11 +214,17 @@ const createlecture = async function (req, res, next) {
     
     if (req.file) {
       try {
-        const upload = await cloudinary.v2.uploader.upload(req.file.path, {
+        const upload = await new Promise((resolve,reject)=>{cloudinary.v2.uploader.upload_large(req.file.path, {resource_type:'video',
           folder: "lms",
           width: 250,
           height: 250,
-        });
+        },(error,result)=>{
+          if(error) reject(error)
+          resolve(result);
+        })
+      }
+      );
+      
  console.log('c3');
  
         if (upload) {
