@@ -64,7 +64,9 @@ export const addlecture=createAsyncThunk('/course/lectures/create',async({cid,da
 export const deletelecture=createAsyncThunk('/course/lectures/delete',async({cid:cid,lid:lid})=>{
   
     try {
-        const response=await axiosInstance.post(`courses/delete?courseId=${cid} && lectureId=${lid}`,formData);
+      console.log('delete1');
+      
+        const response=await axiosInstance.post(`courses/delete?courseId=${cid} && lectureId=${lid}`);
         toast.promise(response, {
           loading: "creating a lecture",
           success: (data) => {
@@ -72,7 +74,8 @@ export const deletelecture=createAsyncThunk('/course/lectures/delete',async({cid
           },
           error: "Failed to create a lecture",
         });
-    
+       console.log('d2');
+       
         return await response;
       } catch (error) {
         console.log(error);
