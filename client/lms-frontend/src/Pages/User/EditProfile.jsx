@@ -64,7 +64,8 @@ function EditProfile() {
         
         await dispatch(editprofile(formData));
         await dispatch(getuser());
-
+        console.log("image upload");
+        
         navigate("/user/profile");
         
     }
