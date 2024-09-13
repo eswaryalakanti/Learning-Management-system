@@ -61,7 +61,7 @@ export const addlecture=createAsyncThunk('/course/lectures/create',async({cid,da
 
 })
 
-export const deletelecture=createAsyncThunk('/course/lectures/create',async(cid,lid)=>{
+export const deletelecture=createAsyncThunk('/course/lectures/create',async({cid:cid,lid:lid})=>{
   
     try {
         const response=await axiosInstance.post(`courses?courseId=${cid} && lectureId=${lid}`,formData);
