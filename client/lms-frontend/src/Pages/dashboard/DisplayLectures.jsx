@@ -22,7 +22,7 @@ function DisplayLectures() {
 
 
     async function onLectureDelete(cid, lid) {
-        await dispatch(deletelecture(cid,lid));
+        await dispatch(deletelecture({cid:state._id,lid}));
         await dispatch(getallthelecture(state._id));
     }
 
@@ -82,7 +82,7 @@ function DisplayLectures() {
                                             <span>Lecture {idx+1} : {" "}</span> {lecture?.title}
                                         </p>
                                         {role === "ADMIN" && (
-                                            <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className="btn-accent px-2 py-1 rounded-md font-semibold text-sm">
+                                            <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className="text-white hover:text-red-400 px-2 py-1 rounded-md font-semibold text-sm">
                                                 Delete lecture
                                             </button>
                                         )}
