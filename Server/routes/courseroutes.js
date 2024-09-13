@@ -13,7 +13,7 @@ router.get('/search',searchCourses);
         .put(isloggedin,authorizeduser('ADMIN'),updateCourse)
         .delete(isloggedin,authorizeduser('ADMIN'),deleteCourse)
         .post(isloggedin,authorizeduser('ADMIN'),upload.single('lecture'),createlecture);
-router.route('/:cid/:title/delete')
+router.route('/delete')
        .post(isloggedin,authorizeduser('ADMIN'),deletelecture);
 
 
