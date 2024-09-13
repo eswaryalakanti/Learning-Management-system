@@ -9,7 +9,7 @@ import { editprofile, getuser } from "../../redux/slice/authslice";
 
 
 function EditProfile() {
-
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -19,7 +19,7 @@ function EditProfile() {
         avatar: undefined,
         userId: useSelector((state) => state?.auth?.auth_data?.data?.id)
     });
-
+    
     function handleImageUpload(e) {
         e.preventDefault();
         const uploadedImage = e.target.files[0]; // this is the actual file
@@ -35,7 +35,7 @@ function EditProfile() {
             })
         }
     }
-
+    
     function handleInputChange(e) {
         const {name, value} = e.target;
         setData({
@@ -43,7 +43,7 @@ function EditProfile() {
             [name]: value
         });
     }
-
+    
     async function onFormSubmit(e) {
         e.preventDefault();
         console.log(data.name);

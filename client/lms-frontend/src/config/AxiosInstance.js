@@ -29,6 +29,6 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.defaults.baseURL = base_url;
-axiosInstance.defaults.timeout = 6500;
+axiosInstance.defaults.timeout = 15000;
 
 export default axiosInstance;
