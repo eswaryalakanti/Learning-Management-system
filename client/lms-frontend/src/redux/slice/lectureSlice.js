@@ -67,12 +67,14 @@ export const deletelecture=createAsyncThunk('/course/lectures/delete',async({cid
       console.log('delete1');
       
         const response=axiosInstance.post(`courses/delete?courseId=${cid} && lectureId=${lid}`);
+        console.log(await response);
+        
         toast.promise(response, {
-          loading: "creating a lecture",
+          loading: "deleting a lecture",
           success: (data) => {
             return data?.data?.message;
           },
-          error: "Failed to create a lecture",
+          error: "Failed to delete a lecture",
         });
        console.log('d2');
        
