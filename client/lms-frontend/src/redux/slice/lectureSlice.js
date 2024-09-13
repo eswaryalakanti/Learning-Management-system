@@ -66,7 +66,7 @@ export const deletelecture=createAsyncThunk('/course/lectures/delete',async({cid
     try {
       console.log('delete1');
       
-        const response=axiosInstance.post(`courses/delete?courseId=${cid} & lectureId=${lid}`);
+        const response=axiosInstance.post(`courses/delete?courseId=${cid}&lectureId=${lid}`);
         console.log(await response);
         
         toast.promise(response, {
